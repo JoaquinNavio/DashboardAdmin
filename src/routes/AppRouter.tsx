@@ -30,6 +30,7 @@ const AppRouter: React.FC = () => {
           <Route path="/empleados" element={<Empleado />} />
           <Route path="/roles" element={<Rol />} />
           <Route path="/promociones" element={<Promocion />} />
+          <Route path="/agregar-sucursal/:empresaId" element={<Sucursales />} />
           <Route path="/sucursales/:empresaId" element={<Sucursales />} />
         </Routes>
       </div>

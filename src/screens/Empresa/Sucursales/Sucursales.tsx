@@ -27,7 +27,7 @@ const SucursalesEmpresa: React.FC = () => {
 
   const fetchSucursales = async () => {
     try {
-      const sucursalesData = await sucursalService.getAll(`${url}empresas/${empresaId}/sucursales`);
+      const sucursalesData = await sucursalService.getAll(`${url}sucursal`);
       dispatch(setSucursal(sucursalesData));
       setFilteredData(sucursalesData);
     } catch (error) {
@@ -40,7 +40,7 @@ const SucursalesEmpresa: React.FC = () => {
       try {
         // Verifica que empresaId no sea undefined antes de hacer la llamada
         if (empresaId) {
-          const empresa = await empresaService.get(url + 'empresas', empresaId);
+          const empresa = await empresaService.get(url + 'empresa', empresaId);
           if (empresa) {
             setNombreEmpresa(empresa.nombre);
           } else {

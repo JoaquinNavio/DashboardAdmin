@@ -60,11 +60,11 @@ const ModalEmpresa: React.FC<{ getEmpresas: () => void }> = ({
                         try {
                             if (elementActive) {
                                 // Lógica para editar una empresa existente
-                                await empresaService.put(url + "empresas", values.id.toString(), values);
+                                await empresaService.put(url + "empresa", values.id.toString(), values);
                                 setSuccessMessage("Se ha actualizado correctamente.");
                             } else {
                                 // Lógica para agregar una nueva empresa
-                                await empresaService.post(url + "empresas", values);
+                                await empresaService.post(url + "empresa", values);
                                 setSuccessMessage("Se ha agregado correctamente.");
                             }
                             getEmpresas(); // Actualiza las empresas

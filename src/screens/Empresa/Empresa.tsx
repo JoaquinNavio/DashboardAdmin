@@ -25,7 +25,7 @@ const EmpresaComponent = () => {
 
   const fetchEmpresas = async () => {
     try {
-      const empresas = await empresaService.getAll(url + 'empresas');
+      const empresas = await empresaService.getAll(url + 'empresa');
       dispatch(setEmpresa(empresas)); 
       setFilteredData(empresas); 
     } catch (error) {
@@ -49,12 +49,15 @@ const EmpresaComponent = () => {
       fetchEmpresas,
       '¿Estás seguro de eliminar esta empresa?',
       'Empresa eliminada correctamente.',
-      'Hubo un problema al eliminar la empresa.',
-      url + 'empresas'
+      'Hubo un problema al eliminar la empresaaaaaaaaaaaaaaaaaaaaaaaaaa.',
+      url + 'empresa'
     );
   };
 
   const handleEdit = (index: number) => {
+
+    dispatch(toggleModal({ modalName: "modal" }));
+
     console.log("Editar empresa en el índice", index);
   };
 
