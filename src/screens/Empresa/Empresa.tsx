@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Box, Typography, Button, Container, Tooltip, IconButton } from "@mui/material";
 import { Add, Visibility, AddCircle } from "@mui/icons-material"; // Importamos los iconos adecuados
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { setEmpresa } from "../../redux/slices/slicesUnificados";
+import { setEmpresa, setElementActive} from "../../redux/slices/slicesUnificados";
 import TableComponent from "../../ui/Table/Table";
 import SearchBar from "../common/SearchBar";
 import EmpresaService from "../../services/EmpresaService";
@@ -17,7 +17,10 @@ const EmpresaComponent = () => {
   const url = import.meta.env.VITE_API_URL;
   const dispatch = useAppDispatch();
   const empresaService = new EmpresaService();
+  const [empresaObj, setEmpresaObj] = useState<Empresa | null>(null);
+
   const globalEmpresas = useAppSelector(
+
     (state) => state.empresa.entities
   );
 
@@ -54,11 +57,18 @@ const EmpresaComponent = () => {
     );
   };
 
-  const handleEdit = (index: number) => {
-
-    dispatch(toggleModal({ modalName: "modal" }));
-
-    console.log("Editar empresa en el índice", index);
+  const handleEdit = async (empresa: Empresa) => {
+    try {
+      console.log("ID DE LA EMPRESA: " +empresa);
+      // Llama al servicio para obtener la empresa por su ID
+      const empresaObtenida = await empresaService.get('http://localhost:8080/empresa/' , empresa.toString());
+      // Establece la empresa obtenida en el estado empresaObj
+      setEmpresaObj(empresaObtenida);
+      // Abre el modal
+      dispatch(toggleModal({ modalName: "modal" }));
+    } catch (error) {
+      console.error("Error al obtener la empresa:", error);
+    }
   };
 
   const handleAddEmpresa = () => {

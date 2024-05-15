@@ -29,6 +29,19 @@ export const { setEntities: setCategoria, resetEntities: resetCategoria } =
   categoriaSlice.actions;
 export const { setEntities: setPromocion, resetEntities: resetPromocion } =
   promocionSlice.actions;
+
+  export const setElementActive = (empresa: Empresa | null) => ({
+    type: 'empresa/setElementActive',
+    payload: empresa,
+  });
+  
+  export const empresaReducer = (state: Empresa | null = null, action: any) => {
+    if (action.type === 'empresa/setElementActive') {
+      return action.payload;
+    }
+    return state;
+  };
+  
 export const {
   setEntities: setArticuloInsumo,
   resetEntities: resetArticuloInsumo,
@@ -53,4 +66,5 @@ export default {
   articuloManufacturado: articuloManufacturadoSlice.reducer,
   sucursal: sucursalSlice.reducer,
   unidadMedida: unidadMedidaSlice.reducer,
+  elementActive: empresaReducer,
 };

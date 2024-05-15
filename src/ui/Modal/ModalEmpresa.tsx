@@ -59,10 +59,13 @@ const ModalEmpresa: React.FC<{ getEmpresas: () => void }> = ({
                     onSubmit={async (values: Empresa) => {
                         try {
                             if (elementActive) {
+                                console.log("elementActive: " + elementActive)
                                 // Lógica para editar una empresa existente
                                 await empresaService.put(url + "empresa", values.id.toString(), values);
                                 setSuccessMessage("Se ha actualizado correctamente.");
                             } else {
+                                console.log("elementActive en el else: " + elementActive)
+
                                 // Lógica para agregar una nueva empresa
                                 await empresaService.post(url + "empresa", values);
                                 setSuccessMessage("Se ha agregado correctamente.");
